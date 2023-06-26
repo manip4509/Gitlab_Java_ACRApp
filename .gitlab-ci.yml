@@ -20,7 +20,7 @@ deploy:
     - az account set --subscription "$AZURE_SUBSCRIPTION_ID"
     - az extension add --name containerapp --upgrade
     - az containerapp up --name testjavaapp --resource-group POC-RG --location East US --environment test-env
-      --registry-password $CI_REGISTRY_PASSWORD --registry-server $CI_REGISTRY --registry-username $CI_REGISTRY_USER
+      --registry-password $REGISTRY_PASSWORD --registry-server $REGISTRY_SERVERNAME --registry-username $REGISTRY_USERNAME
       --target-port 8080 --ingress external
       --image "$REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA"
 
