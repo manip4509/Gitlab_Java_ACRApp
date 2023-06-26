@@ -10,4 +10,4 @@ build:
   script:
     - docker login -u "$REGISTRY_USERNAME" -p "$REGISTRY_PASSWORD" "$REGISTRY_SERVERNAME"
     - docker build -t $REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA .
-    - docker push $REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA .
+    - docker push $REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA
