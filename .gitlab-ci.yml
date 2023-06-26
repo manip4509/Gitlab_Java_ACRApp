@@ -19,14 +19,8 @@ deploy:
     - az login --service-principal --username "$AZURE_CLIENT_ID" --password "$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
     - az account set --subscription "$AZURE_SUBSCRIPTION_ID"
     - az extension add --name containerapp --upgrade
-    - az containerapp create \
-                --name testjavaapp \
-                --resource-group POC-RG \
-                --environment test-env \
-                --image $REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA \
-                --registry-server $REGISTRY_SERVERNAME \
-                --registry-username $REGISTRY_USERNAME \
-                --registry-password $REGISTRY_PASSWORD\
-                --target-port 8080 \
-                --ingress 'external'
+    - az containerapp up --name testjavaapp --resource-group POC-RG --location East US --environment test-env
+      --registry-password $CI_REGISTRY_PASSWORD --registry-server $CI_REGISTRY --registry-username $CI_REGISTRY_USER
+      --target-port 8080 --ingress external
+      --image "$REGISTRY_SERVERNAME/javasampleapp:$CI_COMMIT_SHA"
 
